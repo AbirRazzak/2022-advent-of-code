@@ -22,8 +22,7 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/AbirRazzak/2022-advent-of-code/src/day01"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +37,10 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("day01 called")
+		err := day01.CommandRunner{}.RunPart1()
+		if err != nil {
+			panic(err)
+		}
 	},
 }
 
