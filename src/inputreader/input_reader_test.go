@@ -63,7 +63,7 @@ func TestInputReader_GetFilePathForDay(t *testing.T) {
 			args: args{
 				dayNumber: 1,
 			},
-			want:    filepath.Join("..", "..", "resources", "day01_input.txt"),
+			want:    filepath.Join("..", "resources", "day01_input.txt"),
 			wantErr: false,
 		},
 	}

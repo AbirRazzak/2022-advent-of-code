@@ -24,7 +24,11 @@ package cmd
 import (
 	"github.com/AbirRazzak/2022-advent-of-code/src/day01"
 	"github.com/spf13/cobra"
+	"log"
+	"os"
 )
+
+var part2Flag bool
 
 // day01Cmd represents the day01 command
 var day01Cmd = &cobra.Command{
@@ -37,7 +41,10 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		err := day01.CommandRunner{}.RunPart1()
+		logger := log.New(os.Stderr, "", log.LstdFlags)
+		runner := day01.CommandRunner{Logger: logger}
+
+		err := runner.Run(part2Flag)
 		if err != nil {
 			panic(err)
 		}
@@ -46,14 +53,5 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(day01Cmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// day01Cmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// day01Cmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	day01Cmd.Flags().BoolVarP(&part2Flag, "part2", "2", false, "Run part 2 of the puzzle instead of part 1")
 }

@@ -43,7 +43,7 @@ func (r InputReader) GetFilePathForDay(dayNumber int) (string, error) {
 		return "", err
 	}
 
-	filePath := filepath.Join(path.Dir(b), "..", "..", "resources", fileName)
+	filePath := filepath.Join(path.Dir(b), "..", "resources", fileName)
 
 	return filePath, nil
 }
