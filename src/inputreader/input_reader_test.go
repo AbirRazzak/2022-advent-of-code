@@ -2,7 +2,6 @@ package inputreader_test
 
 import (
 	"github.com/AbirRazzak/2022-advent-of-code/src/inputreader"
-	"path/filepath"
 	"testing"
 )
 
@@ -43,40 +42,6 @@ func TestInputReader_GetFileNameForDay(t *testing.T) {
 			}
 			if got != tt.want {
 				t.Errorf("GetFileNameForDay() got = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func TestInputReader_GetFilePathForDay(t *testing.T) {
-	type args struct {
-		dayNumber int
-	}
-	tests := []struct {
-		name    string
-		args    args
-		want    string
-		wantErr bool
-	}{
-		{
-			name: "happy path",
-			args: args{
-				dayNumber: 1,
-			},
-			want:    filepath.Join("..", "resources", "day01_input.txt"),
-			wantErr: false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			r := inputreader.InputReader{}
-			got, err := r.GetFilePathForDay(tt.args.dayNumber)
-			if (err != nil) != tt.wantErr {
-				t.Skipf("GetFilePathForDay() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if got != tt.want {
-				t.Errorf("GetFilePathForDay() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
