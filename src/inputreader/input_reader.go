@@ -2,48 +2,35 @@ package inputreader
 
 import (
 	"fmt"
-	"os"
-	"path"
-	"path/filepath"
+	"io"
+	"net/http"
 )
 
-type InputReader struct{}
-
-func (r InputReader) GetInputForDay(dayNumber int) (input string, err error) {
-	filePath, err := r.GetFilePathForDay(dayNumber)
-	if err != nil {
-		return "", err
-	}
-
-	fileRaw, err := os.ReadFile(filePath)
-	if err != nil {
-		return "", err
-	}
-
-	fileContent := string(fileRaw)
-
-	return fileContent, nil
+type InputReader interface {
+	GetInputForDay(dayNumber int) (input string, err error)
 }
 
-// GetFileNameForDay returns the file name for the input file in `dayxx_input.txt` format,
-// where xx is the day number as a 2-digit number with leading 0's if needed
-func (r InputReader) GetFileNameForDay(dayNumber int) (string, error) {
-	return fmt.Sprintf("day%02v_input.txt", dayNumber), nil
+type HTTPInputReader struct{}
+
+func (r *HTTPInputReader) GetInputForDay(dayNumber int) (input string, err error) {
+	url, err := r.GetURLPathForFileName(dayNumber)
+	if err != nil {
+		return "", err
+	}
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return "", err
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
+	return string(body), nil
 }
 
-// GetFilePathForDay returns the file path for the input file for the given day number
-func (r InputReader) GetFilePathForDay(dayNumber int) (string, error) {
-	fileName, err := r.GetFileNameForDay(dayNumber)
-	if err != nil {
-		return "", err
-	}
-
-	b, err := os.Getwd()
-	if err != nil {
-		return "", err
-	}
-
-	filePath := filepath.Join(path.Dir(b), "..", "resources", fileName)
-
-	return filePath, nil
+func (r *HTTPInputReader) GetURLPathForFileName(dayNumber int) (string, error) {
+	return fmt.Sprintf("https://raw.githubusercontent.com/AbirRazzak/2022-advent-of-code/master/resources/day%02v_input.txt", dayNumber), nil
 }
