@@ -7,15 +7,14 @@ import (
 )
 
 type CommandRunner struct {
-	Logger *log.Logger
+	Logger      *log.Logger
+	InputReader inputreader.InputReader
 }
 
 func (r *CommandRunner) Run(part2 bool) error {
 	r.Logger.Println("Welcome to day 01!")
 
-	inputReader := inputreader.InputReader{}
-
-	input, err := inputReader.GetInputForDay(1)
+	input, err := r.InputReader.GetInputForDay(1)
 	if err != nil {
 		return err
 	}
