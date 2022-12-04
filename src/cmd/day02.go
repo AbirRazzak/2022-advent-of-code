@@ -1,15 +1,17 @@
 package cmd
 
 import (
-	"github.com/AbirRazzak/2022-advent-of-code/src/day01"
+	"github.com/AbirRazzak/2022-advent-of-code/src/day02"
 	"github.com/AbirRazzak/2022-advent-of-code/src/inputreader"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
-var day01Cmd = &cobra.Command{
-	Use:   "day01",
+// day02Cmd represents the day02 command
+var day02Cmd = &cobra.Command{
+	Use:   "day02",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -18,7 +20,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		runner := day01.CommandRunner{
+		runner := day02.CommandRunner{
 			Logger:      log.New(os.Stderr, "", log.LstdFlags),
 			InputReader: &inputreader.HTTPInputReader{},
 		}
@@ -31,5 +33,5 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	startCmd.AddCommand(day01Cmd)
+	startCmd.AddCommand(day02Cmd)
 }
