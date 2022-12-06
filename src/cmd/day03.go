@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/AbirRazzak/2022-advent-of-code/day03"
+	"github.com/AbirRazzak/2022-advent-of-code/inputreader"
 	"github.com/spf13/cobra"
 )
 
@@ -11,7 +11,13 @@ var day03Cmd = &cobra.Command{
 	Short: "Advent Of Code Day 03",
 	Long:  `https://adventofcode.com/2022/day/3`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("day03 called")
+		err := day03.CommandRunner{
+			Logger:      GetDefaultStartCommandLogger(),
+			InputReader: &inputreader.HTTPInputReader{},
+		}.Run(part2Flag)
+		if err != nil {
+			panic(err)
+		}
 	},
 }
 

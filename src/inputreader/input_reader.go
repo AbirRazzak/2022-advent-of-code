@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 )
 
 type InputReader interface {
-	GetInputForDay(dayNumber int) (input string, err error)
+	GetInputForDay(dayNumber int) (string, error)
 }
 
 type HTTPInputReader struct{}
 
-func (r *HTTPInputReader) GetInputForDay(dayNumber int) (input string, err error) {
+func (r *HTTPInputReader) GetInputForDay(dayNumber int) (string, error) {
 	url, err := r.GetURLPathForFileName(dayNumber)
 	if err != nil {
 		return "", err
@@ -28,7 +29,10 @@ func (r *HTTPInputReader) GetInputForDay(dayNumber int) (input string, err error
 		return "", err
 	}
 
-	return string(body), nil
+	// remove the trailing new line at the end of the input string
+	input := strings.Trim(string(body), "\n")
+
+	return input, nil
 }
 
 func (r *HTTPInputReader) GetURLPathForFileName(dayNumber int) (string, error) {
