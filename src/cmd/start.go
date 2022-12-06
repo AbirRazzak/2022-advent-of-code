@@ -25,5 +25,5 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(startCmd)
-	startCmd.PersistentFlags().BoolVarP(&part2Flag, "part2", "2", false, "Run part 2 of the puzzle instead of part 1")
+	startCmd.PersistentFlags().BoolVarP(&part2Flag, "part2", "2", false, "Run part 2 of the puzzle instead of only part 1")
 }
