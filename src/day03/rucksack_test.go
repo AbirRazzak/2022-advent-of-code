@@ -59,12 +59,12 @@ func TestRuckSack_FindDuplicateItem(t *testing.T) {
 	}{
 		{
 			name:   "duplicate lowercase item",
-			fields: fields{Compartment1: "vJrwpWtwJgWr", Compartment2: "hcsFMMfFFhFp"},
+			fields: fields{Contents: "vJrwpWtwJgWrhcsFMMfFFhFp"},
 			want:   "p",
 		},
 		{
 			name:   "matching upper and lowercase item does not match",
-			fields: fields{Compartment1: "vJrwpWtwJgWr", Compartment2: "VcsFMMfFFhFp"}, // comp1 has v, comp2 has V
+			fields: fields{Contents: "vJrwpWtwJgWrVcsFMMfFFhFp"}, // comp1 has v, comp2 has V
 			want:   "p",
 		},
 		{
@@ -81,9 +81,7 @@ func TestRuckSack_FindDuplicateItem(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			r := &RuckSack{
-				Contents:     tt.fields.Contents,
-				Compartment1: tt.fields.Compartment1,
-				Compartment2: tt.fields.Compartment2,
+				Contents: tt.fields.Contents,
 			}
 			got, err := r.FindDuplicateItem()
 			if (err != nil) != tt.wantErr {
