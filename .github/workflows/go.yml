@@ -22,8 +22,8 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run:
-        cd src \
+      run: |
+        cd src
         go build -v ./...\
 
     - name: Test
