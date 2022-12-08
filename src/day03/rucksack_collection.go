@@ -6,16 +6,16 @@ import (
 )
 
 type RuckSackCollection struct {
-	Sacks []*RuckSack
+	Sacks []ItemFinder
 }
 
 func NewRuckSackCollection() *RuckSackCollection {
 	return &RuckSackCollection{
-		Sacks: make([]*RuckSack, 0),
+		Sacks: make([]ItemFinder, 0),
 	}
 }
 
-func (c *RuckSackCollection) AddRuckSack(s *RuckSack) error {
+func (c *RuckSackCollection) AddRuckSack(s ItemFinder) error {
 	c.Sacks = append(c.Sacks, s)
 	return nil
 }

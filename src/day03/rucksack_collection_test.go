@@ -4,7 +4,7 @@ import "testing"
 
 func TestRuckSackCollection_CalculateItemPriority(t *testing.T) {
 	type fields struct {
-		Sacks []*RuckSack
+		Sacks []ItemFinder
 	}
 	type args struct {
 		item string

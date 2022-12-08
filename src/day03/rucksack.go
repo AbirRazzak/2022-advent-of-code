@@ -2,6 +2,10 @@ package day03
 
 import "fmt"
 
+type ItemFinder interface {
+	FindDuplicateItem() (string, error)
+}
+
 type RuckSack struct {
 	Contents     string
 	Compartment1 string
