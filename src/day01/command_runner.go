@@ -1,7 +1,7 @@
 package day01
 
 import (
-	"github.com/AbirRazzak/2022-advent-of-code/src/inputreader"
+	"github.com/AbirRazzak/2022-advent-of-code/inputreader"
 	"log"
 	"strings"
 )

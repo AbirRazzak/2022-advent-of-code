@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/AbirRazzak/2022-advent-of-code/src/cmd"
+import "github.com/AbirRazzak/2022-advent-of-code/cmd"
 
 func main() {
 	cmd.Execute()

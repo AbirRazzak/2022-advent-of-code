@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -25,5 +27,9 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(startCmd)
-	startCmd.PersistentFlags().BoolVarP(&part2Flag, "part2", "2", false, "Run part 2 of the puzzle instead of part 1")
+	startCmd.PersistentFlags().BoolVarP(&part2Flag, "part2", "2", false, "Run part 2 of the puzzle instead of only part 1")
+}
+
+func GetDefaultStartCommandLogger() *log.Logger {
+	return log.New(os.Stderr, "", log.LstdFlags)
 }

@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/AbirRazzak/2022-advent-of-code/src/day02"
-	"github.com/AbirRazzak/2022-advent-of-code/src/inputreader"
+	"github.com/AbirRazzak/2022-advent-of-code/day02"
+	"github.com/AbirRazzak/2022-advent-of-code/inputreader"
 	"log"
 	"os"
 
