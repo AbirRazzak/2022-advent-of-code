@@ -23,7 +23,7 @@ jobs:
 
     - name: Build
       run:
-        cd src
+        cd ./src
         go build -v ./...
 
     - name: Test
